@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NeoExample Medical & Healthcare</title>
+<style>
+body { margin:0; font-family:Arial; background:#eaf3ff; }
+
+/* Header */
+header { background:#005bbb; color:#fff; padding:20px; }
+nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+
+/* Slider Styles */
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-track img {
+  width: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  height: 350px;
+}
+
+/* Buttons */
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+#prev { left: 10px; }
+#next { right: 10px; }
+
+/* Sections */
+section { padding:30px; line-height:1.6; background:white; margin:20px; border-radius:10px; }
+
+footer { text-align:center; background:#005bbb; color:white; padding:15px; margin-top:30px; }
+</style>
+</head>
+<body>
+
+<header>
+<h1>NeoExample Medical & Healthcare</h1>
+<nav>
+<a href="/index.html">Home</a>
+<a href="/TEMPLATES/about.html">About</a>
+<a href="/TEMPLATES/services.html">Services</a>
+<a href="/TEMPLATES/global.html">Global Services</a>
+<a href="/TEMPLATES/training.html">Training & Jobs</a>
+<a href="TEMPLATES/contact.html">Contact</a>
+</nav>
+</header>
+
+<!-- Slider with buttons -->
+<div class="slider-container">
+  <button class="slider-button" id="prev">&#10094;</button>
+  <div class="slider-track">
+    <img src="/images/neo1.png" alt="Healthcare Image 1"height="500" >
+    <img src="/images/neo2.png" alt="Healthcare Image 2"height="500">
+    <img src="/images/neo3.png" alt="Healthcare Image 3"height="500">
+    <img src="/images/neo4.png" alt="Healthcare Image4"height="500">
+    <img src="/images/neo5.png" alt="Healthcare Image 3"height="500">
+    <img src="/images/neo6.png" alt="Healthcare Image4"height="500">
+ 
+
+  </div>
+  <button class="slider-button" id="next">&#10095;</button>
+</div>
+
+<section>
+<h2>Homecare Services</h2>
+<p>Homecare services are an essential component of the healthcare system today, providing crucial assistance to patients who require medical attention but prefer to receive it in the comfort of their own homes.</p>
+<p>Our services cater to individuals with chronic conditions, the elderly, and those who require post-operative care, alleviating the burden of prolonged hospital stays and improving their quality of life.</p>
+<p>Our services provide a personalized and individualized approach to healthcare, ensuring that patients receive personalized care tailored to their specific needs.</p>
+
+<h3>Why Homecare?</h3>
+<ul>
+<li>Convenience & privacy at home</li>
+<li>Personalized patient care</li>
+<li>Affordable compared to hospital care</li>
+<li>Enhanced independence</li>
+<li>Continuity of care</li>
+<li>Support for family members</li>
+</ul>
+</section>
+
+<footer>© 2025 NeoExample Medical & Healthcare</footer>
+
+
+<script>
+const track = document.querySelector('.slider-track');
+const images = document.querySelectorAll('.slider-track img');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+
+let index = 0;
+const totalSlides = images.length / 2; // 6 images / 2 = 3 slides
+
+function showSlide(i) {
+  index = (i + totalSlides) % totalSlides; // loop after 3 slides
+  track.style.transform = `translateX(-${index * 100}%)`; // each slide = 100% container width
+}
+
+prev.addEventListener('click', () => showSlide(index - 1));
+next.addEventListener('click', () => showSlide(index + 1));
+
+// Auto slide every 5 seconds
+setInterval(() => showSlide(index + 1), 5000);
+</script>
+
+
+</body>
+</html>
