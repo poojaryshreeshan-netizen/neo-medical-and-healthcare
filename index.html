@@ -2,58 +2,428 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NeoExample Medical & Healthcare</title>
 <style>
-body { margin:0; font-family:Arial; background:#eaf3ff; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Header */
-header { background:#005bbb; color:#fff; padding:20px; }
-nav a { color:white; margin:0 15px; text-decoration:none; font-weight:bold; }
+body { 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+  min-height: 100vh;
+  color: #333;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 91, 187, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header Styles */
+header { 
+  background: rgba(0, 91, 187, 0.95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 25px 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+header h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  animation: slideInDown 0.8s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+nav a { 
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+nav a:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
 
 /* Slider Styles */
 .slider-container {
   position: relative;
-  width: 100%;
+  width: 95%;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 40px auto;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 25px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: white;
+  animation: zoomIn 0.8s ease-out;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .slider-track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .slider-track img {
   width: 50%;
   flex-shrink: 0;
   object-fit: cover;
-  height: 350px;
+  height: 450px;
+  filter: brightness(0.95);
+  transition: filter 0.3s;
 }
 
-/* Buttons */
+.slider-track img:hover {
+  filter: brightness(1);
+}
+
+/* Slider Buttons */
 .slider-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.5);
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.9), rgba(0, 91, 187, 0.9));
   color: white;
   border: none;
   font-size: 30px;
-  padding: 10px 15px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   border-radius: 50%;
   z-index: 10;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
 }
 
-#prev { left: 10px; }
-#next { right: 10px; }
+.slider-button:hover {
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, rgba(0, 122, 255, 1), rgba(0, 102, 204, 1));
+}
 
-/* Sections */
-section { padding:30px; line-height:1.6; background:white; margin:20px; border-radius:10px; }
+.slider-button:active {
+  transform: translateY(-50%) scale(1.05);
+}
 
-footer { text-align:center; background:#005bbb; color:white; padding:15px; margin-top:30px; }
+#prev { left: 20px; }
+#next { right: 20px; }
+
+/* Slider Indicators */
+.slider-indicators {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+.indicator.active {
+  background: white;
+  width: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+}
+
+/* Main Content Section */
+section { 
+  padding: 60px 50px;
+  line-height: 1.9;
+  background: rgba(255, 255, 255, 0.98);
+  margin: 40px auto;
+  max-width: 1200px;
+  border-radius: 25px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    #0066cc 0%, 
+    #0088ff 25%, 
+    #00aaff 50%, 
+    #0088ff 75%, 
+    #0066cc 100%);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+section h2 {
+  color: #005bbb;
+  font-size: 2.8em;
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 20px;
+  font-weight: 700;
+}
+
+section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 5px;
+  background: linear-gradient(90deg, #0066cc, #00aaff);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.4);
+}
+
+section p {
+  margin-bottom: 25px;
+  color: #444;
+  font-size: 1.15em;
+  text-align: justify;
+}
+
+section h3 {
+  color: #003d7a;
+  font-size: 2em;
+  margin: 40px 0 25px;
+  font-weight: 600;
+}
+
+/* List Styles */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  padding: 20px 25px;
+  margin: 15px 0;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e0f0ff 100%);
+  border-radius: 15px;
+  position: relative;
+  padding-left: 65px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 91, 187, 0.1);
+  border-left: 4px solid transparent;
+  font-size: 1.05em;
+}
+
+ul li:hover {
+  transform: translateX(15px);
+  box-shadow: 0 8px 30px rgba(0, 91, 187, 0.25);
+  background: linear-gradient(135deg, #e0f0ff 0%, #d0e8ff 100%);
+  border-left-color: #0066cc;
+}
+
+ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #0066cc 0%, #0088ff 100%);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  transition: transform 0.3s;
+}
+
+ul li:hover::before {
+  transform: translateY(-50%) rotate(360deg);
+}
+
+/* Footer */
+footer { 
+  text-align: center;
+  background: rgba(0, 91, 187, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 35px;
+  margin-top: 60px;
+  font-size: 1.15em;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 20px 25px;
+  }
+  
+  header h1 {
+    font-size: 1.8em;
+  }
+  
+  nav {
+    justify-content: center;
+  }
+  
+  nav a {
+    padding: 10px 18px;
+    font-size: 0.9em;
+  }
+  
+  .slider-track img {
+    height: 280px;
+  }
+  
+  section {
+    padding: 40px 25px;
+  }
+  
+  section h2 {
+    font-size: 2em;
+  }
+  
+  .slider-button {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
+  
+  #prev { left: 10px; }
+  #next { right: 10px; }
+  
+  ul li {
+    padding-left: 55px;
+  }
+}
 </style>
 </head>
 <body>
@@ -74,16 +444,19 @@ footer { text-align:center; background:#005bbb; color:white; padding:15px; margi
 <div class="slider-container">
   <button class="slider-button" id="prev">&#10094;</button>
   <div class="slider-track">
-    <img src="images/neo1.png" alt="Healthcare Image 1"height="500" >
-    <img src="images/neo2.png" alt="Healthcare Image 2"height="500">
-    <img src="images/neo3.png" alt="Healthcare Image 3"height="500">
-    <img src="images/neo4.png" alt="Healthcare Image4"height="500">
-    <img src="images/neo5.png" alt="Healthcare Image 3"height="500">
-    <img src="images/neo6.png" alt="Healthcare Image4"height="500">
- 
-
+    <img src="images/neo1.png" alt="Healthcare Image 1">
+    <img src="images/neo2.png" alt="Healthcare Image 2">
+    <img src="images/neo3.png" alt="Healthcare Image 3">
+    <img src="images/neo4.png" alt="Healthcare Image 4">
+    <img src="images/neo5.png" alt="Healthcare Image 5">
+    <img src="images/neo6.png" alt="Healthcare Image 6">
   </div>
   <button class="slider-button" id="next">&#10095;</button>
+  <div class="slider-indicators">
+    <span class="indicator active" data-slide="0"></span>
+    <span class="indicator" data-slide="1"></span>
+    <span class="indicator" data-slide="2"></span>
+  </div>
 </div>
 
 <section>
@@ -105,35 +478,38 @@ footer { text-align:center; background:#005bbb; color:white; padding:15px; margi
 
 <footer>© 2025 NeoExample Medical & Healthcare</footer>
 
-
 <script>
 const track = document.querySelector('.slider-track');
 const images = document.querySelectorAll('.slider-track img');
 const prev = document.getElementById('prev');
 const next = document.getElementById('next');
+const indicators = document.querySelectorAll('.indicator');
 
 let index = 0;
 const totalSlides = images.length / 2; // 6 images / 2 = 3 slides
 
+function updateIndicators() {
+  indicators.forEach((ind, i) => {
+    ind.classList.toggle('active', i === index);
+  });
+}
+
 function showSlide(i) {
-  index = (i + totalSlides) % totalSlides; // loop after 3 slides
-  track.style.transform = `translateX(-${index * 100}%)`; // each slide = 100% container width
+  index = (i + totalSlides) % totalSlides;
+  track.style.transform = `translateX(-${index * 100}%)`;
+  updateIndicators();
 }
 
 prev.addEventListener('click', () => showSlide(index - 1));
 next.addEventListener('click', () => showSlide(index + 1));
 
+indicators.forEach((indicator, i) => {
+  indicator.addEventListener('click', () => showSlide(i));
+});
+
 // Auto slide every 5 seconds
 setInterval(() => showSlide(index + 1), 5000);
 </script>
 
-
 </body>
 </html>
-
-
-
-
-
-
-
