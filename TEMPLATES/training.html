@@ -1,14 +1,373 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Training & Jobs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Training & Jobs - NeoExample Medical & Healthcare</title>
 <style>
-body{font-family:Arial;background:#eaf3ff;margin:0;}
-header{background:#005bbb;color:white;padding:20px;}
-nav a{color:white;margin:0 15px;text-decoration:none;font-weight:bold;}
-section{margin:20px;background:white;padding:30px;border-radius:10px;}
-footer{background:#005bbb;color:white;text-align:center;padding:15px;}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+  min-height: 100vh;
+  color: #333;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 91, 187, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header Styles */
+header {
+  background: rgba(0, 91, 187, 0.95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 25px 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+header h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  animation: slideInDown 0.8s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+nav a {
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+nav a:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Main Section */
+section {
+  background: rgba(255, 255, 255, 0.98);
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 60px 50px;
+  border-radius: 25px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 2;
+  animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    #0066cc 0%, 
+    #0088ff 25%, 
+    #00aaff 50%, 
+    #0088ff 75%, 
+    #0066cc 100%);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Training Program Cards */
+.program-card {
+  background: linear-gradient(135deg, #f8fbff 0%, #e8f4ff 100%);
+  border-radius: 20px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 25px rgba(0, 91, 187, 0.15);
+  border: 2px solid rgba(0, 102, 204, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInScale 0.8s ease-out backwards;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.program-card:nth-child(1) { animation-delay: 0.2s; }
+.program-card:nth-child(2) { animation-delay: 0.4s; }
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, #0066cc, #00aaff);
+  transition: width 0.3s;
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 45px rgba(0, 91, 187, 0.25);
+  border-color: rgba(0, 102, 204, 0.3);
+}
+
+.program-card:hover::before {
+  width: 8px;
+}
+
+section h3 {
+  color: #005bbb;
+  font-size: 2em;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  position: relative;
+  font-weight: 700;
+  display: inline-block;
+}
+
+section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #0066cc, #00aaff);
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.4);
+}
+
+/* Program Info Grid */
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+ul li {
+  padding: 20px 25px;
+  background: white;
+  border-radius: 12px;
+  position: relative;
+  padding-left: 60px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 12px rgba(0, 91, 187, 0.08);
+  border-left: 4px solid transparent;
+  font-size: 1.05em;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+ul li:hover {
+  transform: translateX(10px);
+  box-shadow: 0 6px 20px rgba(0, 91, 187, 0.18);
+  border-left-color: #0066cc;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+}
+
+ul li::before {
+  content: '📋';
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  transition: transform 0.3s;
+}
+
+ul li:hover::before {
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* Special styling for specific items */
+ul li:nth-child(1)::before { content: '👨‍⚕️'; }
+ul li:nth-child(2)::before { content: '💬'; }
+ul li:nth-child(3)::before { content: '💰'; }
+ul li:nth-child(4)::before { content: '📅'; }
+ul li:nth-child(5)::before { content: '🎓'; }
+
+/* Badge for highlighting important info */
+ul li strong {
+  color: #0066cc;
+  font-weight: 700;
+}
+
+/* Info Badge */
+.info-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #0066cc, #0088ff);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: rgba(0, 91, 187, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 35px;
+  margin-top: 60px;
+  font-size: 1.15em;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    padding: 20px 25px;
+  }
+
+  header h2 {
+    font-size: 1.8em;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  nav a {
+    padding: 10px 18px;
+    font-size: 0.9em;
+  }
+
+  section {
+    padding: 40px 25px;
+    margin: 20px 15px;
+  }
+
+  .program-card {
+    padding: 30px 20px;
+  }
+
+  section h3 {
+    font-size: 1.6em;
+  }
+
+  ul {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  ul li {
+    padding-left: 55px;
+  }
+}
 </style>
 </head>
 <body>
@@ -26,26 +385,29 @@ footer{background:#005bbb;color:white;text-align:center;padding:15px;}
 </header>
 
 <section>
+<div class="program-card">
 <h3>Refresher Program (10 hours)</h3>
 <ul>
 <li>For ANM & GNM</li>
 <li>Good communication required</li>
-<li>Fee: Rs 1000</li>
+<li>Fee: <strong>Rs 1000</strong></li>
 <li>Batch: Weekly</li>
 </ul>
+</div>
 
+<div class="program-card">
 <h3>GDA & HHA Course (60–90 hours)</h3>
 <ul>
 <li>Eligibility: 10th pass</li>
 <li>Languages: English, Kannada & Regional</li>
-<li>Course Cost: Rs 5000</li>
-<li>Certification Fee: Rs 1000</li>
+<li>Course Cost: <strong>Rs 5000</strong></li>
+<li>Certification Fee: <strong>Rs 1000</strong></li>
 <li>Batch: Monthly</li>
 </ul>
+</div>
 </section>
 
 <footer>© 2025 NeoExample Medical & Healthcare</footer>
+
 </body>
 </html>
-
-
