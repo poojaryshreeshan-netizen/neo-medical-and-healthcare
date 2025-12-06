@@ -1,18 +1,424 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Contact Us</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - NeoExample Medical & Healthcare</title>
 <style>
-body{font-family:Arial;background:#eaf3ff;margin:0;}
-header{background:#005bbb;color:white;padding:20px;}
-nav a{color:white;margin:0 15px;text-decoration:none;font-weight:bold;}
-section{background:white;margin:20px;padding:30px;border-radius:10px;}
-footer{background:#005bbb;color:white;text-align:center;padding:15px;}
-input,select,textarea{
- width:100%; padding:10px; margin:10px 0; border-radius:5px; border:1px solid #aaa;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-button{padding:10px 20px;background:#005bbb;color:white;border:none;border-radius:5px;cursor:pointer;}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+  min-height: 100vh;
+  color: #333;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 150, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 91, 187, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Header Styles */
+header {
+  background: rgba(0, 91, 187, 0.95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 25px 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+header h2 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  animation: slideInDown 0.8s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+nav a {
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+nav a:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+nav a:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Main Section */
+section {
+  background: rgba(255, 255, 255, 0.98);
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 60px 50px;
+  border-radius: 25px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 2;
+  animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, 
+    #0066cc 0%, 
+    #0088ff 25%, 
+    #00aaff 50%, 
+    #0088ff 75%, 
+    #0066cc 100%);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Contact Layout */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* Contact Info Section */
+.contact-info {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+section h3 {
+  color: #005bbb;
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  position: relative;
+  padding-left: 25px;
+  font-weight: 700;
+}
+
+section h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 80%;
+  background: linear-gradient(180deg, #0066cc, #00aaff);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.4);
+}
+
+section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 25px;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #0066cc, transparent);
+  border-radius: 2px;
+}
+
+.contact-info p {
+  padding: 18px 25px;
+  margin: 15px 0;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e0f0ff 100%);
+  border-radius: 12px;
+  font-size: 1.1em;
+  color: #2c3e50;
+  position: relative;
+  padding-left: 60px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 3px 12px rgba(0, 91, 187, 0.1);
+  border-left: 4px solid transparent;
+  font-weight: 500;
+}
+
+.contact-info p:hover {
+  transform: translateX(10px);
+  box-shadow: 0 6px 20px rgba(0, 91, 187, 0.2);
+  border-left-color: #0066cc;
+  background: linear-gradient(135deg, #e0f0ff 0%, #d0e8ff 100%);
+}
+
+.contact-info p::before {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+}
+
+.contact-info p:nth-child(2)::before { content: '📞'; }
+.contact-info p:nth-child(3)::before { content: '✉️'; }
+.contact-info p:nth-child(4)::before { content: '🌐'; }
+.contact-info p:nth-child(5)::before { content: '📍'; }
+
+/* Contact Form Section */
+.contact-form {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 2px solid #d0e8ff;
+  font-size: 1em;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 5px 20px rgba(0, 102, 204, 0.15);
+  transform: translateY(-2px);
+  background: white;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #7a8fa6;
+}
+
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230066cc' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 45px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+button {
+  padding: 16px 40px;
+  background: linear-gradient(135deg, #0066cc 0%, #0088ff 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: rgba(0, 91, 187, 0.95);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 35px;
+  margin-top: 60px;
+  font-size: 1.15em;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 20px 25px;
+  }
+
+  header h2 {
+    font-size: 1.8em;
+  }
+
+  nav {
+    justify-content: center;
+  }
+
+  nav a {
+    padding: 10px 18px;
+    font-size: 0.9em;
+  }
+
+  section {
+    padding: 40px 25px;
+    margin: 20px 15px;
+  }
+
+  section h3 {
+    font-size: 1.7em;
+  }
+
+  .contact-info p {
+    padding-left: 55px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
 </style>
 </head>
 <body>
@@ -30,33 +436,37 @@ button{padding:10px 20px;background:#005bbb;color:white;border:none;border-radiu
 </header>
 
 <section>
-<h3>Reach Us</h3>
-<p>Phone: xxxxxx</p>
-<p>Email: NeoExamplemhc@gmail.com</p>
-<p>Website: www.NeoExample.in</p>
-<p>Address: Bengaluru - 560102</p>
+<div class="contact-container">
+  <div class="contact-info">
+    <h3>Reach Us</h3>
+    <p>Phone: xxxxxx</p>
+    <p>Email: NeoExamplemhc@gmail.com</p>
+    <p>Website: www.NeoExample.in</p>
+    <p>Address: Bengaluru - 560102</p>
+  </div>
 
-<h3>Contact Form</h3>
-<form>
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="Email" required>
-<input type="text" placeholder="Phone Number" required>
-<input type="text" placeholder="City" required>
-
-<select>
-<option>Caregiver</option>
-<option>Nurse</option>
-<option>Job</option>
-<option>Physiotherapist</option>
-</select>
-
-<textarea placeholder="Remarks"></textarea>
-<button type="submit">Submit</button>
-</form>
+  <div class="contact-form">
+    <h3>Contact Form</h3>
+    <form>
+      <input type="text" placeholder="Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Phone Number" required>
+      <input type="text" placeholder="City" required>
+      <select required>
+        <option value="">Select Service</option>
+        <option>Caregiver</option>
+        <option>Nurse</option>
+        <option>Job</option>
+        <option>Physiotherapist</option>
+      </select>
+      <textarea placeholder="Remarks" rows="4"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
 </section>
 
 <footer>© 2025 NeoExample Medical & Healthcare</footer>
+
 </body>
 </html>
-
-
